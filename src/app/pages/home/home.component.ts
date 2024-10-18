@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../utils/entities/product';
 import { ProductComponent } from '../../components/product/product.component';
+import { ProductService } from '../../utils/services/products.services';
 
 @Component({
   selector: 'app-home',
@@ -9,24 +10,32 @@ import { ProductComponent } from '../../components/product/product.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  productList: Product[] = [
-    {
-      name: "Chocolatine",
-      desc: "Viennoiserie constituée d'une pâte levée feuilletée, rectangulaire et enroulée sur plusieurs barres de chocolat.",
-      price: 0.2
-    },
-    {
-      name: "Pain au chocolat",
-      desc: "Viennoiserie constituée d'une pâte levée feuilletée, rectangulaire et enroulée sur plusieurs barres de chocolat.",
-      price: 0.2
-    },
-    {
-      name: "Petit pain",
-      desc: "Viennoiserie constituée d'une pâte levée feuilletée, rectangulaire et enroulée sur plusieurs barres de chocolat.",
-      price: 0.2
-    },
-  ]
+export class HomeComponent implements OnInit {
+  productList: Product[] = [];
+
+  constructor(private productService : ProductService) {}
+
+  ngOnInit() {
+    this.productList = this.productService.products;
+    if (this.productList.length <= 0) {
+      this.productList.push({
+        name: "Chocolatine",
+        desc: "Viennoiserie constituée d'une pâte levée feuilletée, rectangulaire et enroulée sur plusieurs barres de chocolat.",
+        price: 0.2
+      });
+      this.productList.push({
+        name: "Pain au chocolat",
+        desc: "Viennoiserie constituée d'une pâte levée feuilletée, rectangulaire et enroulée sur plusieurs barres de chocolat.",
+        price: 0.2
+      });
+      this.productList.push({
+        name: "Petit pain",
+        desc: "Viennoiserie constituée d'une pâte levée feuilletée, rectangulaire et enroulée sur plusieurs barres de chocolat.",
+        price: 0.2
+      });
+    }
+  }
+  
 
   deleteProduct(product : Product) {
     const i = this.productList.indexOf(product);
