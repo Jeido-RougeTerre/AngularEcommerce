@@ -1,1 +1,8 @@
-<p>home works!</p>
+<h1> {{ productList.length }} products available</h1>
+<section>
+    @for (product of productList; track product) {
+        <app-product [product]="product" (deleteEvent)="deleteProduct($event)" (checkoutEvent)="checkoutProduct($event)"/>
+    } @empty {
+        <p>No Product available yet ...</p>
+    }
+</section>
