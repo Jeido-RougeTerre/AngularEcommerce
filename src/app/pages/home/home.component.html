@@ -1,5 +1,5 @@
 <h1> {{ productList.length }} products available</h1>
-<section>
+<section class="flex">
     @for (product of productList; track product) {
         <app-product [product]="product" (deleteEvent)="deleteProduct($event)" (checkoutEvent)="checkoutProduct($event)"/>
     } @empty {

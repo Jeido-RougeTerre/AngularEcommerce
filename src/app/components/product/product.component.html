@@ -1,8 +1,14 @@
 <article>
-    <div>
-        <h3>{{ product.name }}<button (click)="deleteProduct()">X</button></h3>
-        <p>{{ product.desc }}</p>
-        <button (click)="checkoutProduct()">{{ product.price }}</button>
-        
+    <div class="outline outline-1 outline-slate-400 bg-slate-200 rounded my-2 mx-1 p-3 size-56 flex flex-col justify-between"> 
+        <div>
+            <div class="flex justify-between mb-2">
+                <h3 class="text-xl font-semibold">{{ product.name }}</h3>
+                <button class="bg-red-500 text-white rounded size-6" (click)="deleteProduct()">X</button>
+            </div>
+            <p class="overflow-auto">{{ product.desc }}</p>
+        </div>
+        <div class="flex flex-row-reverse">
+            <button class="bg-orange-400 font-semibold px-1 rounded-xl w-16" (click)="checkoutProduct()">{{ product.price }} €</button>
+        </div>
     </div>
 </article>
